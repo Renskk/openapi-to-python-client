@@ -1,0 +1,33 @@
+""" Contains some shared types for properties """
+from typing import BinaryIO, Literal, Optional, Tuple, TypeVar
+
+from attrs import define
+
+
+class Unset:
+    def __bool__(self) -> Literal[False]:
+        return False
+
+
+UNSET: Unset = Unset()
+
+FileJsonType = Tuple[Optional[str], BinaryIO, Optional[str]]
+
+
+@define
+class File:
+    """Contains information for file uploads"""
+
+    payload: BinaryIO
+    file_name: Optional[str] = None
+    mime_type: Optional[str] = None
+
+    def to_tuple(self) -> FileJsonType:
+        """Return a tuple representation that httpx will accept for multipart/form-data"""
+        return self.file_name, self.payload, self.mime_type
+
+
+T = TypeVar("T")
+
+
+__all__ = ["File", "FileJsonType"]

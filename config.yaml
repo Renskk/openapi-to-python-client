@@ -1,0 +1,12 @@
+# 生成客户端的配置
+# 特别注意: url 和 path 填写二选一
+
+url: null # 填入线上 openapi url
+path: "demo/openapi.json" # 填入本地 openapi json path
+config:
+  project_name_override: demo # 生成的项目名
+  package_name_override: openapi # 生成的包名
+  package_version_override: null # 指定生成的客户端的包版本。如果未设置，客户端将使用 OpenAPI 规范的版本。
+  use_path_prefixes_for_title_model_names: true
+  field_prefix: field_
+  http_timeout: 5
